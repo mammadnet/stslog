@@ -12,3 +12,7 @@ cpu_usage=$(top -bn2 | grep '%Cpu' | tail -1 | awk '{print 100-$8}')
 load_average=$(uptime | awk '{print $8 $9 $10}')
 
 cpu_status="$cpu_usage,$load_average"
+
+memory_usage=$(cat /proc/meminfo | grep -P '(MemTotal|MemFree)' | awk '{printf "%s ", $2}' | awk '{print $2/1000 "/" $1/1000 " MB"}')
+
+swap_usage=$($(cat /proc/meminfo | grep -P '(SwapTotal|SwapFree)' | awk '{printf "%s ", $2}' | awk '{print $2/1000 "/" $1/1000 " MB"}'))
