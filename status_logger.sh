@@ -1,5 +1,3 @@
 #!/bin/bash
 
-kernel_release(){
-    uname -r
-}
+kernel_release=$(uname -r)
