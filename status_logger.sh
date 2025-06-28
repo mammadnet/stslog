@@ -15,4 +15,4 @@ cpu_status="$cpu_usage,$load_average"
 
 memory_usage=$(cat /proc/meminfo | grep -P '(MemTotal|MemFree)' | awk '{printf "%s ", $2}' | awk '{print $2/1000 "/" $1/1000 " MB"}')
 
-swap_usage=$($(cat /proc/meminfo | grep -P '(SwapTotal|SwapFree)' | awk '{printf "%s ", $2}' | awk '{print $2/1000 "/" $1/1000 " MB"}'))
+swap_usage=$(cat /proc/meminfo | grep -P '(SwapTotal|SwapFree)' | awk '{printf "%s ", $2}' | awk '{print $2/1000 "/" $1/1000 " MB"}')
