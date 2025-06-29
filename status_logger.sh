@@ -18,3 +18,7 @@ memory_usage=$(cat /proc/meminfo | grep -P '(MemTotal|MemFree)' | awk '{printf "
 swap_usage=$(cat /proc/meminfo | grep -P '(SwapTotal|SwapFree)' | awk '{printf "%s ", $2}' | awk '{print $2/1000 "/" $1/1000 " MB"}')
 
 time_stamp=$(date +"%Y-%m-%d %H:%M:%S %z")
+
+formated_log="[$time_stamp] Kernel:$kernel_release OS:$os_version Users:[$online_users] CPU:$cpu_status Memory:$memory_usage Swap:$swap_usage"
+
+echo $formated_log
