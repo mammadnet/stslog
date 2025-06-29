@@ -9,7 +9,7 @@ online_users=$(who | awk '{print $1}' | sort | uniq -c | awk '{printf "%s:%s", $
 
 cpu_usage=$(top -bn2 | grep '%Cpu' | tail -1 | awk '{print 100-$8}')
 
-load_average=$(uptime | awk '{print $8 $9 $10}')
+load_average=$(uptime | awk '{print $(NF-2) $(NF-1) $NF}')
 
 cpu_status="$cpu_usage,$load_average"
 
