@@ -6,7 +6,8 @@ if [[ $EUID -ne 0 ]]; then
     exit 1
 fi
 
-logger_path=$1
+file_directory=$(realpath $1)
+logger_path="$file_directory/logger.sh"
 
 if [[ ! -e $logger_path ]]; then
     echo "Logger path not exist in $logger_path"
