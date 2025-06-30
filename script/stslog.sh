@@ -12,7 +12,7 @@ for (i=4; i<=NF; i++){
     if (i == 4)
         printf "%s", $i
     else if ($i == "MB")
-        printf "MB";
+        printf " MB";
     else
         printf "\n%s", $i;
     }
