@@ -14,6 +14,6 @@ if [[ ! -e $logger_path ]]; then
     exit 1
 fi
 
-(crontab -l 2>/dev/null; echo "*/5 * * * * $logger_path") | crontab -
+$file_directory/cronjob_set.sh -e m5 $file_directory/logger.sh
 
 
