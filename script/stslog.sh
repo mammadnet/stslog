@@ -58,7 +58,7 @@ while getopts ":e:scld:h" opt; do
             $script_directory/show_logs.sh -l $log_file_path
             ;;
         d)
-            $script_directory/show_logs.sh -d s $log_file_path
+            $script_directory/show_logs.sh -d "$OPTARG" $log_file_path
             ;;
         h)
             help
