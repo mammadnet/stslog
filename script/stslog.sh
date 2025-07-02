@@ -31,7 +31,7 @@ if [[ -z $1 ]]; then
     show_current_status
 fi
 
-while getopts ":e:sch" opt; do
+while getopts ":e:scld:h" opt; do
 
     case $opt in 
 
@@ -52,6 +52,13 @@ while getopts ":e:sch" opt; do
         
         c)
             $script_directory/cronjob_set.sh -c $script_directory/logger.sh
+            ;;
+        
+        l)
+            $script_directory/show_logs.sh -l $log_file_path
+            ;;
+        d)
+            $script_directory/show_logs.sh -d s $log_file_path
             ;;
         h)
             help
