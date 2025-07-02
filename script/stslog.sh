@@ -31,7 +31,7 @@ if [[ -z $1 ]]; then
     show_current_status
 fi
 
-while getopts ":e:ch" opt; do
+while getopts ":e:sch" opt; do
 
     case $opt in 
 
