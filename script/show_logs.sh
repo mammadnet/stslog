@@ -44,7 +44,24 @@ log_by_date() {
 }
 
 help() {
-    echo Show log help text
+    cat <<-EOF
+
+Usage: stslog [OPTIONS]
+
+Display entries from the status log.
+
+OPTIONS:
+    -l                Show all log entries (opens in less).
+    -d "START/END"    Show entries between two timestamps.
+                    START/END format:
+                        "YYYY-MM-DD HH:MM/YYYY-MM-DD HH:MM"
+                    Example:
+                        show_logs.sh -d "2025-07-01 00:00/2025-07-02 12:00" /var/log/status.log
+
+    -h                Show help message and exit.
+    
+EOF
+    
 }
 
 log_path=${@: -1}
