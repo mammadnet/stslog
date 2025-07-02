@@ -72,10 +72,28 @@ current_cycle() {
 }
 
 help() {
-    # TODO Print help text for cronjob set
-    echo "This is help text for cron job set"
+    cat <<-EOF
+    
+Usage: stslog [OPTIONS] SCRIPT_PATH
 
+Manage the cron job that invokes logger.
+
+OPTIONS:
+    -e INTERVAL       Set a new cron entry for the given SCRIPT_PATH.
+                    INTERVAL format:
+                        mN   every N minutes   (1-59)
+                        hN   every N hours     (1-24)
+                        dN   every N days      (1-30)
+                        MN   every N months    (1-12)
+                    Example:
+                        stslog -e m5 /opt/stslog/logger.sh
+
+    -c                Show the current cron entry for the given SCRIPT_PATH.
+    -h                Show this help message and exit.
+
+EOF
 }
+
 
 
 script_path=${@: -1}
