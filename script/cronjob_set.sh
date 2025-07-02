@@ -50,7 +50,24 @@ cron_set() {
 current_cycle() {
     script_path=$1
     cron_time=$(crontab -l 2>/dev/null | awk -v script="$script_path" '{if ($NF == script ) print $0}')
-    echo "$cron_time"
+    cycle_time=$(echo "$cron_time" | awk '{
+        for (i=1; i<NF; i++){
+            if ($i != "*"){
+                num=substr($i, 3)
+                if (i == 1)
+                    printf "%s Minute", num
+                else if (i == 2)
+                    printf "%s Hour", num
+                else if (i == 3)
+                    printf "%s Day", num
+                else if (i == 4)
+                    printf "%s Month", num
+                print ""
+
+            }
+        }
+    }')
+    echo "Log system status every <$cycle_time>"
     
 }
 
