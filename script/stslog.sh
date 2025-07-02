@@ -31,7 +31,7 @@ if [[ -z $1 ]]; then
     show_current_status
 fi
 
-while getopts ":e:sh" opt; do
+while getopts ":e:ch" opt; do
 
     case $opt in 
 
@@ -48,6 +48,10 @@ while getopts ":e:sh" opt; do
             if [[ ! $? -eq 0 ]]; then
                 exit 1
             fi
+            ;;
+        
+        c)
+            $script_directory/cronjob_set.sh -c $script_directory/logger.sh
             ;;
         h)
             help

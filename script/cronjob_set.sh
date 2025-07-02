@@ -47,6 +47,13 @@ cron_set() {
     fi
 }
 
+current_cycle() {
+    script_path=$1
+    cron_time=$(crontab -l 2>/dev/null | awk -v script="$script_path" '{if ($NF == script ) print $0}')
+    echo "$cron_time"
+    
+}
+
 help() {
     # TODO Print help text for cronjob set
     echo "This is help text for cron job set"
@@ -54,7 +61,7 @@ help() {
 }
 
 
-script_path=$3
+script_path=${@: -1}
 
 if [[ -z $script_path ]]; then
     echo Script path not entered
@@ -66,7 +73,7 @@ else
     fi
 fi
 
-while getopts ":e:h" opt; do
+while getopts ":e:ch" opt; do
 
     case $opt in
 
@@ -76,6 +83,10 @@ while getopts ":e:h" opt; do
                 echo Cronjob set not successful
                 exit 1
             fi
+            ;;
+        
+        c)
+            current_cycle $script_path
             ;;
         
         h)
