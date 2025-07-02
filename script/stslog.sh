@@ -23,9 +23,35 @@ show_current_status() {
 }
 
 help() {
-    # TODO Show help text for stslog command
-    echo help text for stslog command
+    cat <<-EOF
+Usage: stslog [OPTIONS]
+
+A system status logger.
+
+OPTIONS:
+    -s                Show current system status (same as no args).
+    -e INTERVAL       Configure automatic logging interval.
+                    INTERVAL format:
+                        mN   every N minutes   (1-59)
+                        hN   every N hours     (1-24)
+                        dN   every N days      (1-30)
+                        MN   every N months    (1-12)
+                    Example: stslog -e m15
+
+    -c                Display the current cron schedule for logger.sh.
+    -l                Show all logged entries from /var/log/status.log.
+    -d "START/END"    Show logs between two timestamps.
+                    START/END format:
+                        "YYYY-MM-DD HH:MM/YYYY-MM-DD HH:MM"
+                    Example:
+                        stslog -d "2025-07-01 00:00/2025-07-02 12:00"
+
+    -h                Show this help message and exit.
+
+Without any options, stslog will display the current status.
+EOF
 }
+
 
 if [[ -z $1 ]]; then
     show_current_status
